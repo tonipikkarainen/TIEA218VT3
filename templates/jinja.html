@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Halma Python/CGI</title>
+<link rel="StyleSheet" href="http://users.jyu.fi/~totapikk/cgi-bin/vt3css.cgi?{{ruudunKoko}}" type="text/css" />
+</head>
+<body>
+<!-- Tekijä Toni Pikkarainen -->
+<h1>Halma</h1>
+
+<p>Kerro luotavan pelialueen koko. Ruudukko on yhtä monta ruutua
+leveä kuin korkea. </p>
+
+<form action="http://users.jyu.fi/~totapikk/cgi-bin/vt3.cgi" method="post">
+<fieldset>
+<p><label>Teksti <input type="text" name="teksti" /></label></p>
+<p><label>Leveys <input type="text" name="x" /></label></p>
+<p><label>Anna yhden ruudun leveys (50-200) <input type="text" name="ruutu" /></label></p>
+</fieldset>
+<p><input type="submit" value="Luo" /></p>
+
+
+
+<input type="hidden" name="rivi" value="" />
+<input type="hidden" name="sarake" value="" />
+<input type="hidden" name="klikvari" value="" />
+<input type="hidden" name="vihrvari" value="" />
+
+<input type="hidden" name="vihrrivi" value="" />
+<input type="hidden" name="vihrsarake" value="" />
+
+{% for u in punrivit %}
+        <input type="hidden" name="punrivit" value="{{u}}" />
+{% endfor %}
+ 
+{% for u in punsarakkeet %}
+        <input type="hidden" name="punsarakkeet" value="{{u}}" />
+{% endfor %}
+
+{% for u in sinrivit %}
+        <input type="hidden" name="sinrivit" value="{{u}}" />
+{% endfor %}
+ 
+{% for u in sinsarakkeet %}
+        <input type="hidden" name="sinsarakkeet" value="{{u}}" />
+{% endfor %}
+
+
+</form>
+
+<table>
+{% for i in range(0,koko) %}
+        <tr>
+        {% for j in range(0,koko) %}
+            <td>
+            {% if taul[i][j]==1 %}
+                    <a href="http://users.jyu.fi/~totapikk/cgi-bin/vt3.cgi?rivi={{i}}&sarake={{j}}{% for u in punrivit%}&punrivit={{u}}{% endfor %}{% for u in punsarakkeet %}&punsarakkeet={{u}}{% endfor %}{% for u in sinrivit%}&sinrivit={{u}}{% endfor %}{% for u in sinsarakkeet %}&sinsarakkeet={{u}}{% endfor %}&klikvari=red&vihrrivi={{vihrrivi}}&vihrsarake={{vihrsarake}}&vihrvari={{vihrvari}}&x={{koko}}&teksti={{urlTeksti}}&{{ruudunKoko}}"><img src="red.svg" alt="red" /></a>
+            {% endif %}
+            {% if taul[i][j]==-1 %}
+            <a href="http://users.jyu.fi/~totapikk/cgi-bin/vt3.cgi?rivi={{i}}&sarake={{j}}{% for u in punrivit%}&punrivit={{u}}{% endfor %}{% for u in punsarakkeet %}&punsarakkeet={{u}}{% endfor %}{% for u in sinrivit%}&sinrivit={{u}}{% endfor %}{% for u in sinsarakkeet %}&sinsarakkeet={{u}}{% endfor %}&klikvari=blue&vihrrivi={{vihrrivi}}&vihrsarake={{vihrsarake}}&vihrvari={{vihrvari}}&x={{koko}}&teksti={{urlTeksti}}&{{ruudunKoko}}"><img src="blue.svg" alt="blue" /></a>
+            {% endif %}
+            {% if taul[i][j]==2 %}
+            <a href="http://users.jyu.fi/~totapikk/cgi-bin/vt3.cgi?rivi={{i}}&sarake={{j}}{% for u in punrivit%}&punrivit={{u}}{% endfor %}{% for u in punsarakkeet %}&punsarakkeet={{u}}{% endfor %}{% for u in sinrivit%}&sinrivit={{u}}{% endfor %}{% for u in sinsarakkeet %}&sinsarakkeet={{u}}{% endfor %}&klikvari=green&vihrrivi={{vihrrivi}}&vihrsarake={{vihrsarake}}&vihrvari={{vihrvari}}&x={{koko}}&teksti={{urlTeksti}}&{{ruudunKoko}}"><img src="green.svg" alt="green" /></a>
+            {% endif %}
+            {% if taul[i][j]==0 %}
+            <a href="http://users.jyu.fi/~totapikk/cgi-bin/vt3.cgi?rivi={{i}}&sarake={{j}}{% for u in punrivit%}&punrivit={{u}}{% endfor %}{% for u in punsarakkeet %}&punsarakkeet={{u}}{% endfor %}{% for u in sinrivit%}&sinrivit={{u}}{% endfor %}{% for u in sinsarakkeet %}&sinsarakkeet={{u}}{% endfor %}&klikvari=empty&vihrrivi={{vihrrivi}}&vihrsarake={{vihrsarake}}&vihrvari={{vihrvari}}&x={{koko}}&teksti={{urlTeksti}}&{{ruudunKoko}}"></a>
+            {% endif %}
+            </td>
+        {% endfor %}
+        </tr>
+{% endfor %}
+</table>
+
+<p>{{ teksti }}</p>
+
+
+</body>
+</html>

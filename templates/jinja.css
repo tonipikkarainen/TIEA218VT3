@@ -1,0 +1,38 @@
+/*jinja tyylitiedosto*/
+
+/*tyylitiedosto*/
+
+tr:nth-child(even) td:nth-child(even) {
+    background-color: black;
+}
+
+tr:nth-child(odd) td:nth-child(odd) {
+    background-color: black;
+}
+
+
+
+table { 
+	border-spacing: 0px;
+	border:1px solid black;
+ }
+ 
+ a {
+     display:block;
+     width:100%;
+     height:100%;
+     vertical-align:middle;
+ }
+ 
+ img{
+    width:80%;
+    padding-top:10%;
+    padding-bottom:10%;
+ }
+ 
+ td {
+  background-color: white;
+  width: {{ koko }};
+  height: {{ koko }};
+  text-align:center;
+} 
